@@ -1,77 +1,91 @@
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 struct Rover {
     heading: char,
     x: isize,
     y: isize,
 }
 
-impl Default for Rover {
-    fn default() -> Self {
-        Rover {
-            heading: 'N',
-            x: 0,
-            y: 0,
-        }
-    }
-}
-
 impl Rover {
     fn run(&self, command: char, obstacles: &Vec<(usize, usize)>) -> (Self, bool) {
         if command == 'R' && self.heading == 'N' {
-            return (Self {
-                heading: 'E',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'E',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'R' && self.heading == 'E' {
-            return (Self {
-                heading: 'S',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'S',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'R' && self.heading == 'S' {
-            return (Self {
-                heading: 'W',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'W',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'R' && self.heading == 'W' {
-            return (Self {
-                heading: 'N',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'N',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'L' && self.heading == 'N' {
-            return (Self {
-                heading: 'W',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'W',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'L' && self.heading == 'E' {
-            return (Self {
-                heading: 'N',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'N',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'L' && self.heading == 'S' {
-            return (Self {
-                heading: 'E',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'E',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'L' && self.heading == 'W' {
-            return (Self {
-                heading: 'S',
-                x: self.x,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: 'S',
+                    x: self.x,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'M' && self.heading == 'N' {
             let mut next_y = self.y + 1;
@@ -82,11 +96,14 @@ impl Rover {
                 return (*self, false);
             }
 
-            return (Self {
-                heading: self.heading,
-                x: self.x,
-                y: next_y,
-            }, true);
+            return (
+                Self {
+                    heading: self.heading,
+                    x: self.x,
+                    y: next_y,
+                },
+                true,
+            );
         }
         if command == 'M' && self.heading == 'S' {
             let mut next_y = self.y - 1;
@@ -98,11 +115,14 @@ impl Rover {
                 return (*self, false);
             }
 
-            return (Self {
-                heading: self.heading,
-                x: self.x,
-                y: next_y,
-            }, true);
+            return (
+                Self {
+                    heading: self.heading,
+                    x: self.x,
+                    y: next_y,
+                },
+                true,
+            );
         }
         if command == 'M' && self.heading == 'E' {
             let mut next_y = self.x + 1;
@@ -114,11 +134,14 @@ impl Rover {
                 return (*self, false);
             }
 
-            return (Self {
-                heading: self.heading,
-                x: next_y,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: self.heading,
+                    x: next_y,
+                    y: self.y,
+                },
+                true,
+            );
         }
         if command == 'M' && self.heading == 'W' {
             let mut next_y = self.x - 1;
@@ -130,11 +153,14 @@ impl Rover {
                 return (*self, false);
             }
 
-            return (Self {
-                heading: self.heading,
-                x: next_y,
-                y: self.y,
-            }, true);
+            return (
+                Self {
+                    heading: self.heading,
+                    x: next_y,
+                    y: self.y,
+                },
+                true,
+            );
         }
 
         (*self, true)
@@ -147,7 +173,7 @@ impl Rover {
         }
 
         if !rover.1 {
-            return format!("O:{}:{}:{}", rover.0.x, rover.0.y, rover.0.heading)
+            return format!("O:{}:{}:{}", rover.0.x, rover.0.y, rover.0.heading);
         }
 
         format!("{}:{}:{}", rover.0.x, rover.0.y, rover.0.heading)
@@ -204,30 +230,45 @@ mod tests {
 
     #[test]
     fn move_onto_north_obstacle() {
-        let rover = Rover::default();
+        let rover = Rover {
+            heading: 'N',
+            x: 0,
+            y: 0,
+        };
 
-        assert_eq!("O:0:0:N".to_string(), rover.execute("M", vec![(0,1)]))
+        assert_eq!("O:0:0:N".to_string(), rover.execute("M", vec![(0, 1)]))
     }
 
     #[test]
     fn move_onto_south_obstacle() {
-        let rover = Rover{heading: 'S', x: 0, y: 1};
+        let rover = Rover {
+            heading: 'S',
+            x: 0,
+            y: 1,
+        };
 
-        assert_eq!("O:0:1:S".to_string(), rover.execute("M", vec![(0,0)]))
+        assert_eq!("O:0:1:S".to_string(), rover.execute("M", vec![(0, 0)]))
     }
 
     #[test]
     fn move_onto_east_obstacle() {
-        let rover = Rover{heading: 'E', x: 0, y: 0};
+        let rover = Rover {
+            heading: 'E',
+            x: 0,
+            y: 0,
+        };
 
-        assert_eq!("O:0:0:E".to_string(), rover.execute("M", vec![(1,0)]))
+        assert_eq!("O:0:0:E".to_string(), rover.execute("M", vec![(1, 0)]))
     }
-
 
     #[test]
     fn move_onto_west_obstacle() {
-        let rover = Rover{heading: 'W', x: 1, y: 0};
+        let rover = Rover {
+            heading: 'W',
+            x: 1,
+            y: 0,
+        };
 
-        assert_eq!("O:1:0:W".to_string(), rover.execute("M", vec![(0,0)]))
+        assert_eq!("O:1:0:W".to_string(), rover.execute("M", vec![(0, 0)]))
     }
 }
