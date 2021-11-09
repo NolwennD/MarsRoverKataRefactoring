@@ -1,0 +1,29 @@
+{
+  "name": "mars-rover",
+  "version": "1.0.0",
+  "description": "Mars Rover",
+  "main": "src/Rover.ts",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NolwennD/MarsRoverKataRefactoring.git"
+  },
+  "author": "Gnuk",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/NolwennD/MarsRoverKataRefactoring/issues"
+  },
+  "homepage": "https://github.com/NolwennD/MarsRoverKataRefactoring#readme",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0"
+  },
+  "dependencies": {
+    "typescript": "^4.4.4"
+  }
+}
