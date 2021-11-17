@@ -75,12 +75,11 @@ class MarsRover
                 $next_y = $this->x + 1;
                 if ($next_y > 9) {
                     $next_y = 0;
-                    $this->x = $next_y;
                 }
                 if (in_array([$next_y, $this->y], $obstacles)) {
                     $stuck = true;
                 }
-                if ($stuck) {
+                if (!$stuck) {
                     $this->x = $next_y;
                 }
             }
@@ -88,17 +87,17 @@ class MarsRover
                 $next_y = $this->x - 1;
                 if ($next_y < 0) {
                     $next_y = 9;
-                    $this->x = $next_y;
                 }
 
                 if (in_array([$next_y, $this->y], $obstacles)) {
                     $stuck = true;
                 }
-                if ($stuck) {
+                if (!$stuck) {
                     $this->x = $next_y;
                 }
             }
         }
+
         return ($stuck ? "O:" : "") . "{$this->x}:{$this->y}:{$this->heading}";
     }
 }
