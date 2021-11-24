@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 #[derive(Clone, Copy)]
 struct Rover {
     heading: char,
